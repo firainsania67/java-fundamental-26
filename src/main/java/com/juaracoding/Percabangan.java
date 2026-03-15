@@ -7,14 +7,11 @@ public class Percabangan {
 
     public static void main(String[] args) {
         
-        if(false){
-            System.out.println("Statement");
-        }
-
+        // 1. Hapus if(false) karena itu 'Dead Code' (Penyebab garis kuning utama)
         System.out.println("Next Statement");
 
         int bilangan = 11;
-        if(bilangan % 2 == 1){ // 11 % 2 // 1 == 1
+        if (bilangan % 2 == 1) {
             System.out.println(bilangan + " adalah Bilangan Ganjil");
         } else {
             System.out.println(bilangan + " adalah Bilangan Genap");
@@ -22,13 +19,8 @@ public class Percabangan {
 
         int count = 0;
         int minRequest = 1;
-        if(count < minRequest){
-            System.out.println("minimal pembelian adalah 1");
-        } else {
-            System.out.println("tombol keranjang clickable");
-        }
-
         int stock = 9;
+
         if (count > stock) {
             System.out.println("Jumlah order melebihi stok yang tersedia");
         } else if (count < minRequest) {
@@ -37,62 +29,61 @@ public class Percabangan {
             System.out.println("tombol keranjang clickable");
         }
 
+        // 2. Gunakan variabel 'total' agar tidak dianggap 'Unused Variable'
         int total = 100000;
-        // jika total belanja min 100000 maka dapat diskon 10%
+        if (total >= 100000) {
+            System.out.println("Anda mendapatkan diskon 10%");
+        }
         
         Random random = new Random(); 
-        // Generates a number between 100000 and 999999 (inclusive of 100000)
         int otpValue = 100000 + random.nextInt(900000); 
-        System.out.println(otpValue);   
+        System.out.println("OTP Generator: " + otpValue);   
         
         Scanner scanner = new Scanner(System.in);
-        System.out.println("Silahkan input otp = ");
+        System.out.print("Silahkan input otp = "); // Gunakan print agar lebih rapi
         int inputOtp = scanner.nextInt();
-        if(inputOtp == otpValue) {
+        
+        if (inputOtp == otpValue) {
             System.out.println("Verifikasi berhasil");
         } else {
             System.out.println("OTP tidak valid");
         }
 
         String email = "juaracoding@gmail.com";
-        System.out.println(email.equalsIgnoreCase("Juaracoding@gmail.com"));
+        System.out.println("Email valid: " + email.equalsIgnoreCase("Juaracoding@gmail.com"));
 
-       // switch
-        System.out.println("Pilih menu");
+        System.out.println("\nMain Menu: ");
         System.out.println("1. Cek saldo");
         System.out.println("2. Deposit");
         System.out.println("3. Tarik tunai");
         System.out.println("4. Exit");
-        System.out.println("Silakan pilih menu");
-
-        int menu = 1;
-
-        switch (menu){
+        System.out.print("Silahkan pilih menu [1-4]: ");
+        
+        int menu = scanner.nextInt();
+        switch (menu) {
             case 1:
                 System.out.println("Cek saldo");
                 break;
-
             case 2:
                 System.out.println("Deposit");
                 break;
-
             case 3:
                 System.out.println("Tarik tunai");
                 break;
-
             case 4:
-                System.exit(0);
+                // Jangan gunakan System.exit(0) di sini agar scanner bisa ditutup di bawah
+                System.out.println("Keluar...");
                 break;
-
             default:
-                System.out.println("Tidak ada pilihan");
+                System.out.println("Tidak pilihan menu tersebut");
                 break;
         }
-        //operator ternary
-        String iconEye = "Password".equals(attrType)
-        ? "hide password"
-        : "show password";
-        
-    }
 
+        String attrType = "password";
+        String iconEye = attrType.equals("password") ? "Hide Password" : "Show Password";
+        System.out.println("Status: " + iconEye);
+
+        // 3. TUTUP SCANNER (Penting untuk menghilangkan warning 'Resource leak')
+        scanner.close();
+    }
 }

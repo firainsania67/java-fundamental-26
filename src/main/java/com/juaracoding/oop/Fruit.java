@@ -1,12 +1,12 @@
 package com.juaracoding.oop;
 
 public class Fruit {
-
+    // Tambahkan public di sini
     public int grams;
     public int calsPerGram;
 
-    public int totalCalories(){
+    // Tambahkan public di sini
+    public int totalCalories() {
         return grams * calsPerGram;
     }
-
 }
